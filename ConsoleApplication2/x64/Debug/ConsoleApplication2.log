@@ -1,0 +1,38 @@
+﻿  Chel.cpp
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(25,27): error C2535: int DATA::setday(int): функция-член уже определена или объявлена
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(23): message : см. объявление "DATA::setday"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(27,26): error C2535: int DATA::setday(int): функция-член уже определена или объявлена
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(23): message : см. объявление "DATA::setday"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,6): error C2665: Chel::Chel: ни одна из 4 перегрузок не может преобразовать все типы аргументов
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(20,2): message : может быть "Chel::Chel(char *,char *,char *,int,int,int,int)"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,15): message : "Chel::Chel(char *,char *,char *,int,int,int,int)": невозможно преобразовать аргумент 1 из "const char [7]" в "char *"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,16): message : При преобразовании из строкового литерала теряется квалификатор (см. /Zc:strictStrings)
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(20,2): message : см. объявление "Chel::Chel"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,6): message : при попытке сопоставить список аргументов "(const char [7], const char [7], const char [11], int, int, int, int)"
+  ConsoleApplication2.cpp
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(25,27): error C2535: int DATA::setday(int): функция-член уже определена или объявлена
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(23): message : см. объявление "DATA::setday"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(27,26): error C2535: int DATA::setday(int): функция-член уже определена или объявлена
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(23): message : см. объявление "DATA::setday"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,6): error C2665: Chel::Chel: ни одна из 4 перегрузок не может преобразовать все типы аргументов
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(20,2): message : может быть "Chel::Chel(char *,char *,char *,int,int,int,int)"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,15): message : "Chel::Chel(char *,char *,char *,int,int,int,int)": невозможно преобразовать аргумент 1 из "const char [7]" в "char *"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,16): message : При преобразовании из строкового литерала теряется квалификатор (см. /Zc:strictStrings)
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(20,2): message : см. объявление "Chel::Chel"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,6): message : при попытке сопоставить список аргументов "(const char [7], const char [7], const char [11], int, int, int, int)"
+  DATA.cpp
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(18,7): error C3646: dataR: неизвестный спецификатор переопределения
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(18,12): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(22,3): error C2614: Chel: недопустимая инициализация члена: "dataR" не является базовым классом или членом
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,6): error C2665: Chel::Chel: ни одна из 4 перегрузок не может преобразовать все типы аргументов
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(20,2): message : может быть "Chel::Chel(char *,char *,char *,int,int,int,int)"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,15): message : "Chel::Chel(char *,char *,char *,int,int,int,int)": невозможно преобразовать аргумент 1 из "const char [7]" в "char *"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,16): message : При преобразовании из строкового литерала теряется квалификатор (см. /Zc:strictStrings)
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(20,2): message : см. объявление "Chel::Chel"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(27,6): message : при попытке сопоставить список аргументов "(const char [7], const char [7], const char [11], int, int, int, int)"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\Chel.h(31,183): error C2065: dataR: необъявленный идентификатор
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(25,27): error C2535: int DATA::setday(int): функция-член уже определена или объявлена
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(23): message : см. объявление "DATA::setday"
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(27,26): error C2535: int DATA::setday(int): функция-член уже определена или объявлена
+C:\Users\Student16\Desktop\Антон Шяткус\ConsoleApplication2\DATA.h(23): message : см. объявление "DATA::setday"
+  Создание кода...
