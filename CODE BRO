@@ -1,0 +1,107 @@
+#include <iostream>
+#include <iomanip>
+#include<time.h>
+#include <stdlib.h>
+#include <Windows.h>
+#include <fstream>
+#include <string>
+#include <conio.h>
+
+
+using namespace std;
+//class Array
+//{
+//	int size;
+//	int* arr;
+//public:
+//	explicit Array(int nSize = 10)
+//	{
+//		size = nSize;
+//		arr = new int[size];
+//	}
+//		
+//	~Array()
+//	{
+//		delete[] arr;
+//	}
+//	
+//	int getV(int index) const { return arr[index]; }
+//	int getSize() const { return size; }
+//	void setV(int index, int nV){ arr[index] = nV; }
+//	void printV(int index) const { cout << arr[index] << endl; }
+//	
+//};
+//void printAll(const Array& array)
+//{
+//	for (int i = 0; i < array.getSize(); i++)
+//		array.printV(i);
+//	cout << endl;
+//}
+class car
+{
+private:
+	int nomer;
+	char* name;
+	char* mark;
+	static int vsemach;
+public:
+	car(int nNomer, const char* nName, const char* nMark, static char nVsemach) :
+		nomer{ nNomer }, name{ nName ? new char[strlen(nName) + 1] : nullptr }, mark{ nMark ? new char[strlen(nMark) + 1] : nullptr }
+	{
+		if (name)
+		{
+			strcpy_s(name, strlen(nName) + 1, nName);
+		}
+		if (mark)
+		{
+			strcpy_s(mark, strlen(nMark) + 1, nMark);
+		}
+	}
+		car() : car(1254, "Название" , "Марка", 1) {}
+		car(const car& cop) : nomer{ cop.nomer }, 
+			name{ cop.name ? new char[strlen(cop.name) + 1] : nullptr }, mark{ cop.mark ? new char[strlen(cop.mark) + 1] : nullptr }
+		{
+			if (name)
+			{
+				strcpy_s(name, strlen(cop.name) + 1, cop.name);
+			}
+			if (mark)
+			{
+				strcpy_s(mark, strlen(cop.mark) + 1, cop.mark);
+			}
+		}
+		~car()
+		{
+			delete[] name;
+			delete[] mark;
+		}
+		int getnomer() { return nomer; }
+		void setNomer(int nNomer) { nomer = nNomer; }
+		char* getname() { return name; }
+		void setname(char* nName) { name = nName; }
+		char* getMarka() { return mark; }
+		void setMarka(char* nMarka) { mark = nMarka; }
+		void print()
+		{
+			cout << "Номер" << nomer << '\n' << "Название" << name << '\n' << "Марка" << mark << '\n' << "Количество всех машин" << vsemach << '\n';
+		}
+};
+int main()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	srand(time(NULL));
+	//int size = 4;
+	//Array array(size);
+	//for (int i = 0; i < size; i++)
+	//{
+	//	array.setV(i, size - i);
+	//}
+	//printAll(array);
+	//cout << "!!!" << endl;
+	///*printAll(3);*/
+	///*Array arr1 = 10;*/
+	//Array arr2{ 15 };
+	car Car;
+	Car.print();
+}
