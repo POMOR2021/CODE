@@ -1,0 +1,163 @@
+#include <iostream>
+#include <stdlib.h>
+#include <fstream>
+#include <Windows.h>
+#include <time.h>
+#include <string>
+#include <iomanip>
+#include <conio.h>
+
+using namespace std;
+class DynArr
+{
+	int* arr;
+	int size;
+public:
+	DynArr(int sizeP) : arr{ new int [sizeP] {} }, size{ sizeP }
+	{
+		cout << "DynArr конструктор с парамметромб массив объекта " << size << "Находится в" << this << '\n';
+	}
+	DynArr() : DynArr(5) {}
+	DynArr(const DynArr& ob) :
+		arr{ new int[ob.size] }, size{ ob.size }
+	{
+
+
+		for (int i{ 0 }; i < size; i++)
+		{
+			arr[i] = ob.arr[i];
+		}
+		cout << "DynArr конструктор с параметром массив объекта " << size << "Находится в" << this << '\n';
+	}
+	/*DynArr& operator=(const DynArr& object)
+	{
+		if (!(this == &object))
+		{
+			if (size != object.size)
+			{
+				delete[] arr;
+				arr = new int[object.size];
+			}
+			size = object.size;
+
+			for (int i{ 0 }; i < size; i++)
+			{
+				arr[i] = object.arr[i];
+			}
+			cout << "DynArr copy assigned for" << size << "elements, for" << this << '\n';
+		}
+		return *this;
+	}*/
+	DynArr(DynArr&& object) :
+		arr{ object.arr }, size{ object.size }
+	{
+		object.arr = nullptr;
+		object.size = 0;
+		cout << "DynArr move constructed for" << size << "element, for" << this << '\n';
+	}
+	DynArr& operator=(const DynArr& object)
+	{
+		if (!(this == &object))
+		{
+			if (size != object.size)
+			{
+				delete[] arr;
+				arr = new int[object.size];
+			}
+			size = object.size;
+			int* dest{ arr };
+			int* src{ object.arr };
+
+			int* const end{ arr + size };
+			while (dest < end)
+			{
+				*dest++ = *src++;
+			}
+		}
+		return *this;
+	}
+	DynArr& operator=(DynArr&& object)
+	{
+		if (!(this == &object))
+		{
+
+			delete arr;
+			arr = object.arr;
+			size = object.size;
+			object.arr = nullptr;
+			object.size = 0;
+		}
+		cout << "DynArray move assigned for" << size << "elements, for" << this << '\n';
+		return *this;
+	}
+	int getElem(int index) const { return arr[index]; }
+	int setElem(int index, int val) const { arr[index] = val; }
+	void print()const;
+	void random();
+	~DynArr()
+	{
+		cout << "Освобождение дин памяти" << arr << "указатель\n";
+		delete[] arr;
+		cout << "Деструктор для" << this << '\n';
+	}
+};
+void DynArr::print()const
+{
+	for (int i{ 0 }; i < size; i++)
+		cout << arr[i] << ' ';
+	cout << '\n';
+}
+void DynArr::random()
+{
+	for (int i{ 0 }; i < size; i++)
+	{
+		arr[i] = rand() % 10;
+	}
+}
+DynArr arrayfactory(int arrSize)
+{
+	DynArr arr{ arrSize };
+	arr.random();
+	return arr;
+}
+int main()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	srand(time(NULL));
+	//int x{ 42 };
+	//int& refx{ x };
+	//const int& crefx{ x };
+	//const int cRefXX{ x + 24 };
+	////Следующие строки закомментированны специально!
+	////int&& Rvalue{x}
+	////Невозможно инициализировать rvalue - ссылку lvalue - объектом
+	////int&& rvalue{res}
+	////rvalue - ссылка сама является lvalue- объектом
+	//cout << &x << '\n' << &refx << '\n' << &crefx << '\n' << &cRefXX << endl;
+	//x = 2;
+	//cout << &x << '\n' << &refx << '\n' << &crefx << '\n' << &cRefXX << endl;
+	////int&& Rvalue{ move(x) }; - тут всё правильно. Функция move превращает x с lvalue в rvalue0	
+	/*DynArr ar1{ 10 };
+	ar1.random();
+	cout << "ar1 элементы:";
+	ar1.print();
+	DynArr ar2{ ar1 };
+	ar2.random();
+	cout << "ar2 элементы:";
+	ar2.print();
+	DynArr ar3{ ar1 };
+	ar3.random();
+	cout << "ar3 элементы до копирования:";
+	ar3.print();
+	ar3 = ar2;
+	cout << "ar3 элементы после копирования:";
+	ar3.print();
+	cout << '\n';*/
+	DynArr ar1{ arrayfactory(10) };
+	cout << "ar1 elemets:";
+	ar1.print();
+	ar1 = arrayfactory(5);
+	ar1.print();
+
+}
