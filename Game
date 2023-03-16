@@ -1,0 +1,27 @@
+#include <iostream>
+#include <iomanip>
+#include <Windows.h>
+#include <stdlib.h>
+#include <time.h>
+#include <conio.h>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+class Game
+{
+	static char* janr;
+	uint32_t god;
+	char* nazvanie;
+	uint32_t cena;
+public:
+	Game(static char* nJanr,uint32_t nGod,char* nNazvanie,uint32_t nCena) :
+		janr{nJanr ? new static char[strlen(nJanr + 1)] : nullptr},
+		god{nGod}, nazvanie{nNazvanie ? new char[strlen(nNazvanie + 1)] : nullptr}, cena{nCena}
+	{
+
+	}
+	Game(): Game{"ARKAD",0, "PONCHWAR",0}{}
+
+};
