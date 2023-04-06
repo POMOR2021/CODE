@@ -1,0 +1,102 @@
+#include <iostream>
+#include <stdlib.h>
+#include <fstream>
+#include <string>
+#include <time.h>
+#include <conio.h>
+#include <cassert>
+#include <Windows.h>
+#include <iomanip>
+
+
+using namespace std;
+template<typename T>
+void print(T* begin, T* end, char delimiter = ' ')
+{
+	while (begin != end)
+	{
+		cout << *begin++ << delimiter;
+	}
+	cout << '\n';
+}
+template<typename T, typename Predicate>
+int copy_if(T* srcB, T* srcE, T* destB, T* destE, Predicate pred)
+{
+	int copyCount{ 0 };
+	while (destB != destE and srcB != srcE)
+	{
+		if (pred(*srcB))
+		{
+			*destB++ = *srcB;
+			++copyCount;
+		}
+		++srcB;
+	}
+	return copyCount;
+}
+bool odd(const int el)
+{
+	return el % 2 == 0;
+}
+bool even(const int el)
+{
+	return el % 2 == 0;
+}
+bool greater3(const int el)
+{
+	return el > 3;
+}
+bool all(const int el)
+{
+	return true;
+}
+
+int main()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	srand(time(NULL));
+	const int size{ 10 };
+	int arr1[size]{ 1,2,3,4,5,6,7,8,9,10 };
+	int arr2[size]{};
+	/*
+	указатель на первый элементб начало массива
+	arr1 - arr1Being указатель на следущий за последжним элемнент, конец масссива arr1 - arr1End
+	*/
+	int* const arr1Being{ arr1 };
+	int* const arr1End{ arr1 + size };
+	/*
+	укзатель на следущий за последним скопированным 
+	в масссив arr2 элемент - arr2New
+	*/
+	int* const arr2Being{ arr2 };
+	int* const arr2End{ arr2 + size };
+	int* arr2NewEnd{};
+	cout << "Original arr1\n";
+	print(arr1, arr1 + size);
+	cout << "Original arr2\n";
+	print(arr2, arr2 + size);
+	cout << endl;
+
+	cout << "arr1 copy of arr1 even elementsonly:\n";
+	arr2NewEnd = arr2Being + copy_if(arr1Being, arr1End, arr2Being, arr2End, even);
+	print(arr2, arr2NewEnd);
+	cout << '\n';
+
+	cout << "arr1 copy of odd even elementsonly:\n";
+	arr2NewEnd = arr2Being + copy_if(arr1Being, arr1End, arr2Being, arr2End, odd);
+	print(arr2, arr2NewEnd,'|');
+	cout << '\n';
+
+	cout << "arr1 copy of arr1 greater3 elementsonly:\n";
+	arr2NewEnd = arr2Being + copy_if(arr1Being, arr1End, arr2Being, arr2End, greater3);
+	print(arr2, arr2NewEnd);
+	cout << '\n';
+
+	cout << "arr1 copy of arr1 all elementsonly:\n";
+	arr2NewEnd = arr2Being + copy_if(arr1Being, arr1End, arr2Being, arr2End, all);
+	print(arr2, arr2NewEnd);
+	
+
+
+}
