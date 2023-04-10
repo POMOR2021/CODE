@@ -1,21 +1,46 @@
 #include <iostream>
-
+#include <Windows.h>
 using namespace std;
+
 class Drob
 {
     int num1;
     int num2;
 public:
-    Drob(int nNum1, int nNum2) : 
-        num1{nNum1}, num2 { nNum2}{}
-    Drob(): Drob(12,23){}
-    friend Drob operator +(const Drob& lhs, const Drob& rhs);
-    friend Drob operator -(const Drob& lhs, const Drob& rhs);
-    friend Drob operator *(const Drob& lhs, const Drob& rhs);
-    friend Drob operator /(const Drob& lhs, const Drob& rhs);
+    Drob(int nNum1, int nNum2) :
+        num1{ nNum1 }, num2{ nNum2 } {}
+    Drob() : Drob(12, 23) {}
+
+    Drob operator*(const Drob& r) const
+    {
+        return Drob(num1 * r.num1, num2 * r.num2);
+    }
+
+    Drob operator+(const Drob& r) const
+    {
+        if (num2 != r.num2)
+            cout << "Ошибка" << endl;
+
+        return Drob(num1 + r.num1, num2);
+    }
+
+    Drob operator-(const Drob& r) const
+    {
+        if (num2 != r.num2)
+            cout << "Ошибка" << endl;
+
+        return Drob(num1 - r.num1, num2);
+    }
+
+    Drob operator/(const Drob& r) const
+    {
+        return Drob(num1 * r.num1, num2 * r.num2);
+    }
 };
 int main()
 {
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
     Drob a(12,36);
 
     system("pause");
