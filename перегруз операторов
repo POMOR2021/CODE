@@ -37,12 +37,82 @@ public:
         return Drob(num1 * r.num1, num2 * r.num2);
     }
 };
+class Complex         
+{
+private:
+    double re, im;      
+public:
+   
+
+    Complex(double nRe, double nIm) : 
+        re{nRe}, im{nIm}{}
+    Complex() : Complex(0.16,0.26){}
+
+   
+    Complex(const Complex& c)   
+    {
+        re = c.re;
+        im = c.im;
+    }
+
+    Complex operator+ (const Complex& c)
+    {
+        return Complex(re + c.re, im + c.im);
+    }
+
+   
+    Complex operator- (const Complex& c)
+    {
+        return Complex(re - c.re, im - c.im);
+    }
+
+   
+    Complex operator* (const Complex& c)
+    {
+        return Complex(re * c.re - im * c.im, re * c.im + im * c.re);
+    }
+
+    Complex operator/ (const Complex& c)
+    {
+        Complex t;
+
+        double r = c.re * c.re + c.im * c.im;
+        t.re = (re * c.re + im * c.im) / r;
+        t.im = (im * c.re - re * c.im) / r;
+
+        return t;
+    }
+    friend ostream& operator<< (ostream&, const Complex&);
+    friend istream& operator>> (istream&, Complex&);
+
+};
+
+ostream& operator<< (ostream& out, const Complex& c)
+{
+    out << "(" << c.re << ", " << c.im << ")";
+    return out;
+}
+
+istream& operator>> (istream& in, Complex& c)
+{
+    in >> c.re >> c.im;
+    return in;
+}
+
 int main()
 {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
-    Drob a(12,36);
+    Drob a(12,36);  
+    Complex a(5, 2);
+    Complex b(3, -3);
 
-    system("pause");
-    return 0;
+    cout << "a = " << a << "; b =" << b << endl;
+    cout << "a = " << a << "; b =" << b << endl;
+
+    Complex c = a + b;
+
+    cout << c << endl;
+    cout << a + b << endl;
+    cout << a * b << endl;
 }
