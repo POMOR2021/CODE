@@ -1,0 +1,21 @@
+class Flat
+{
+	double ploshad;
+	double cena;
+public:
+	Flat( double nPloshad, double nCena) : 
+		 ploshad{ nPloshad }, cena{ nCena } {}
+	Flat() : Flat( 0.13,0.64){}
+
+	Flat& operator=(Flat&& object)
+	{
+			
+			ploshad = object.ploshad;
+			cena = object.cena;
+			object.ploshad = 0;
+			object.cena = 0;
+	}
+	Flat operator==(Flat& nPloshad)
+	{
+	}
+};
