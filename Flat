@@ -1,3 +1,137 @@
+#include <iostream>
+#include <Windows.h>
+#include <time.h>
+#include <stdlib.h>
+#include <fstream>
+#include <string>
+#include <conio.h>
+#include <iomanip>
+#include <cassert>
+
+using namespace std;
+class Fraction
+{
+	int numeratir;
+	int denominator;
+	int gcd(int a, int b);
+	void reduce();
+public:
+	Fraction(int num, int denom) :
+		numeratir{ num }, denominator{denom}
+	{
+		reduce();
+	}
+	Fraction() : Fraction(1,1){}
+	void setNumerator(int num) { numeratir = num; reduce(); }
+	int getNumer()const { return numeratir; }
+	void setdenominator(int denom) { denominator = denom ? denom : 1; reduce(); }
+	int getDenumirator()const { return denominator; }
+	void print() const;
+};
+int Fraction::gcd(int a, int b)
+{
+	int copy;
+	while (b)
+	{
+		a %= b;
+		copy = a;
+		a = b;
+		b = copy;
+
+	}
+	return a;
+}
+void Fraction::reduce()
+{
+	int gsdVal{ gcd(numeratir, denominator) };
+	numeratir /= gsdVal;
+	denominator /= gsdVal;
+	if (denominator < 0 and numeratir < 0)
+	{
+		denominator *= -1;
+		numeratir *= -1;
+	}
+}
+	void Fraction::print()const
+	{
+		cout << '(' << numeratir << " / " << denominator << ')';
+	}
+	Fraction operator+(const Fraction& left,
+		const Fraction& right)
+	{
+		return Fraction{ left.getNumer() *
+		right.getDenumirator() +
+		right.getNumer() *
+		left.getDenumirator(),
+		left.getDenumirator() *
+		right.getDenumirator() };
+	}
+	Fraction operator+(const Fraction& left, int right)
+	{
+		return Fraction{ left.getNumer() + right *
+		left.getDenumirator(),
+		left.getDenumirator() };
+	}
+	Fraction operator+(int left, const Fraction& right)
+	{
+		return right + left;
+	}
+	Fraction operator-(const Fraction& left,
+		const Fraction& right)
+	{
+		return Fraction{ left.getNumer() *
+		right.getDenumirator() -
+		right.getNumer() *
+		left.getDenumirator(), left.getDenumirator() *
+		right.getDenumirator() };
+	}
+	Fraction operator-(const Fraction& left, int right)
+	{
+		return Fraction{ left.getNumer() - right *
+		left.getDenumirator(),
+		left.getDenumirator() };
+	}
+	Fraction operator-(int left, const Fraction& right)
+	{
+		return Fraction{ left * right.getDenumirator() -
+		right.getNumer(),
+		right.getDenumirator() };
+	}
+	Fraction operator*(const Fraction& left,
+		const Fraction& right)
+	{
+		return Fraction{ left.getNumer() *
+		right.getNumer(),
+		left.getDenumirator() *
+		right.getDenumirator() };
+	}
+	Fraction operator*(const Fraction& left, int right)
+	{
+		return Fraction{ left.getNumer() * right,
+		left.getDenumirator() };
+	}
+	Fraction operator*(int left, const Fraction& right)
+	{
+		return right * left;
+	}
+	Fraction operator/(const Fraction& left,
+		const Fraction& right)
+	{
+		return Fraction{ left.getNumer() *
+		right.getDenumirator(),
+		left.getDenumirator() *
+		right.getNumer() };
+	}
+	Fraction operator/(const Fraction& left, int right)
+	{
+		return Fraction{ left.getNumer() ,
+		left.getDenumirator() * right };
+	}
+	Fraction operator/(int left, const Fraction& right)
+	{
+		return Fraction{ left * right.getDenumirator(),
+		right.getNumer() };
+	}
 class Flat
 {
 	double ploshad;
@@ -19,3 +153,26 @@ public:
 	{
 	}
 };
+int main()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	srand(time(NULL));
+	Fraction a{ 1,2 };
+	Fraction b{ 1,3 };
+
+	cout << "\na = "; a.print();
+	cout << "\nb = "; b.print();
+	cout << "\na + b = "; (a + b).print();
+	cout << "\na — b = "; (a - b).print();
+	cout << "\na * b = "; (a * b).print();
+	cout << "\na / b = "; (a / b).print();
+	cout << "\na + 3 = "; (a + 3).print();
+	cout << "\n3 + a = "; (3 + a).print();
+	cout << "\na — 3 = "; (a - 3).print();
+	cout << "\n3 — a = "; (3 - a).print();
+	cout << "\na * 3 = "; (a * 3).print();
+	cout << "\n3 * a = "; (3 * a).print();
+	cout << "\na / 3 = "; (a / 3).print();
+	cout << "\n3 / a = "; (3 / a).print();
+}
