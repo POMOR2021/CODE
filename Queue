@@ -1,0 +1,80 @@
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+#include <Windows.h>
+#include <string>
+#include <time.h>
+#include <conio.h>
+#include <cassert>
+#include <iomanip>
+
+using namespace std;
+template<typename T>
+class Queue
+{
+	enum{EMPTY = -1,FULL = 20};
+	int top;
+	T info[FULL];
+	T* st = new char[FULL + 1];
+
+public:
+	Queue()
+	{
+		top = EMPTY;
+	}
+	void stekClear()
+	{
+		top = EMPTY;
+	}
+	bool isFuul()
+	{
+		return top == FULL;
+	}
+	bool isEmpty()
+	{
+		return top == EMPTY;
+	}
+	int getCount()
+	{
+		return top + 1;
+	}
+	void add(T c)
+	{
+		if (!isFuul() )
+		{
+			st[++top] = c;
+		}
+	}
+	T extract()
+	{
+		if (!isEmpty())
+		{
+			int temp = st[0];
+			for (int i = 0; i < top; i++)
+			{
+				st[i - 1] = st[i];
+			}
+			top--;
+			return temp;
+		}
+		else
+	return -1;
+	}
+};
+int main()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	srand(time(NULL));
+	char str[7]{ "privet" };
+	Queue <char> q;
+	for (int i = 0; i < 7; i++)
+	{
+		q.add(str[i]);
+	}
+	while (!q.isEmpty())
+	{
+		cout << q.extract() << endl;
+	}
+
+}
