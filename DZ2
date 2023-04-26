@@ -1,0 +1,40 @@
+#include <iostream>
+#include <Windows.h>
+
+
+using namespace std;
+
+template <class T>
+
+
+void MinMax(T* MinMaxim, int NMinMax, T& max, T& min, int& b, int& a) {
+    a = 0;   b = 0;   min = A[0]; max = A[0];
+    for (int i = 1; i < NA; i++)
+    {
+        if (min > MinMaxim[i])
+        {
+            min = MinMaxim[i];
+            b = i;
+        }
+        if (max < MinMaxim[i])
+        {
+            max = MinMaxim[i];
+            a = i;
+        }
+    }
+}
+int main()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    const int NMinMax = 5, d = 5, c = 5;
+    int max, b, a, min, MinMaxim[NMinMax]; 
+    for (int i = 0; i < NMinMax; i++)
+    {
+        cout << "Введите число:";
+        cin >> MinMaxim[i];
+    }
+    MinMax(MinMaxim, NMinMax, max, min, b, a);
+    cout << "максимум: "<< a << max << endl;
+    cout << "мимнимум: "<< b << min << endl << endl;
+}
