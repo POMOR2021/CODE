@@ -1,0 +1,158 @@
+#include <iostream>
+#include <Windows.h>
+#include <time.h>
+#include <stdlib.h>
+#include <fstream>
+#include <string>
+#include <conio.h>
+#include <iomanip>
+#include <cassert>
+
+using namespace std;
+
+class Drob
+{
+    int num1;
+    int num2;
+public:
+    Drob(int nNum1, int nNum2) :
+        num1{ nNum1 }, num2{ nNum2 } {}
+    Drob() : Drob(12, 23) {}
+
+    Drob operator*(const Drob& r) const
+    {
+        return Drob(num1 * r.num1, num2 * r.num2);
+    }
+
+    Drob operator+(const Drob& r) const
+    {
+        if (num2 != r.num2)
+            cout << "Ошибка" << endl;
+
+        return Drob(num1 + r.num1, num2);
+    }
+
+    Drob operator-(const Drob& r) const
+    {
+        if (num2 != r.num2)
+            cout << "Ошибка" << endl;
+
+        return Drob(num1 - r.num1, num2);
+    }
+
+    Drob operator/(const Drob& r) const
+    {
+        return Drob(num1 * r.num1, num2 * r.num2);
+    }
+};
+class Complex
+{
+private:
+    double re, im;
+public:
+
+
+    Complex(double nRe, double nIm) :
+        re{ nRe }, im{ nIm } {}
+    Complex() : Complex(0.16, 0.26) {}
+
+
+    Complex(const Complex& c)
+    {
+        re = c.re;
+        im = c.im;
+    }
+
+    Complex operator+ (const Complex& c)
+    {
+        return Complex(re + c.re, im + c.im);
+    }
+
+
+    Complex operator- (const Complex& c)
+    {
+        return Complex(re - c.re, im - c.im);
+    }
+
+
+    Complex operator* (const Complex& c)
+    {
+        return Complex(re * c.re - im * c.im, re * c.im + im * c.re);
+    }
+
+    Complex operator/ (const Complex& c)
+    {
+        Complex t;
+
+        double r = c.re * c.re + c.im * c.im;
+        t.re = (re * c.re + im * c.im) / r;
+        t.im = (im * c.re - re * c.im) / r;
+
+        return t;
+    }
+    friend ostream& operator<< (ostream&, const Complex&);
+    friend istream& operator>> (istream&, Complex&);
+
+};
+
+ostream& operator<< (ostream& out, const Complex& c)
+{
+    out << "(" << c.re << ", " << c.im << ")";
+    return out;
+}
+
+istream& operator>> (istream& in, Complex& c)
+{
+    in >> c.re >> c.im;
+    return in;
+}
+class Flat
+{
+    double ploshad;
+    double cena;
+public:
+    Flat(double nPloshad, double nCena) :
+        ploshad{ nPloshad }, cena{ nCena } {}
+    Flat() : Flat(0.13, 0.64) {}
+
+    Flat& operator=(Flat&& object)
+    {
+
+        ploshad = object.ploshad;
+        cena = object.cena;
+        object.ploshad = 0;
+        object.cena = 0;
+    }
+    friend bool operator== (const Flat& l, const Flat& r);
+    friend bool operator > (const Flat& l, const Flat& r);
+};
+bool operator == (const Flat& l, const Flat& r)
+{
+    return (l.ploshad == r.ploshad);
+}
+bool operator>(const Flat& l, const Flat& r)
+{
+    return(l.cena > r.cena);
+}
+int main()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    Drob a(12, 36);
+    Complex a(5, 2);
+    Complex b(3, -3);
+
+    cout << "a = " << a << "; b =" << b << endl;
+    cout << "a = " << a << "; b =" << b << endl;
+
+    Complex c = a + b;
+
+    cout << c << endl;
+    cout << a + b << endl;
+    cout << a * b << endl;
+
+    Flat a(1.12, 2.36);
+    Flat b(1.98, 0.36);
+    bool c = a > b;
+    cout << c;
+}
